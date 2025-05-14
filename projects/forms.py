@@ -4,6 +4,7 @@ from django.utils.safestring import mark_safe
 from .models import Project
 
 
+# Add special sighns for price and squares fields
 class SuffixTextInput(forms.TextInput):
     def __init__(self, suffix="", attrs=None):
         self.suffix = suffix

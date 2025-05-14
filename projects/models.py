@@ -20,11 +20,21 @@ class MediaFile(models.Model):
     project = models.ForeignKey(
         Project, related_name="project_media", on_delete=models.CASCADE
     )
-    file = models.FileField(upload_to="project_media/", blank=True)
+
+    @staticmethod
+    def file_path(instance, filename) -> str:
+        return f"project_{instance.project.id}/media/{filename}"
+
+    file = models.FileField(upload_to=file_path, blank=True)
 
 
 class FloorPlan(models.Model):
     project = models.ForeignKey(
         Project, related_name="project_floor_plan", on_delete=models.CASCADE
     )
-    file = models.FileField(upload_to="project_floor_plan/", blank=True)
+
+    @staticmethod
+    def file_path(instance, filename) -> str:
+        return f"project_{instance.project.id}/floor_plan/{filename}"
+
+    file = models.FileField(upload_to=file_path, blank=True)
