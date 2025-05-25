@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block projects %}
+    <section class="projects-banner">
+        <div class="projects-page-title">
+            <h1>Unsere Projekte</h1>
+        </div>
+    </section>
+    
+    <section class="projects-section">
+        <div class="projects-card-container">
+            {% for project in projects %}
+            <a class="project-card" href="{% url 'project_detail' project.pk %}">
+                {% if project.banner_image %}
+                <img src="{{ project.banner_image.url }}" alt="{{ project.title }}">
+                {% endif %}
+                <div class="project-card-content">
+                    <h2>{{ project.title }}</h2>
+                    <p><strong>Adresse:</strong> {{ project.address }}</p>
+                    <p><strong>Wohnfläsche:</strong> {{ project.square }} m²</p>
+                    <p><strong>Grundstücksfläsche:</strong> {{ project.land_area }} m²</p>
+                    <p><strong>Zimmer:</strong> {{ project.rooms }}</p>
+                    <p><strong>Preis:</strong> {{ project.price }} €</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock projects %}
