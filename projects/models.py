@@ -1,4 +1,6 @@
 from django.db import models
+from geopy.exc import GeocoderTimedOut
+from geopy.geocoders import Nominatim
 
 
 def banner_image_path(instance, filename) -> str:
@@ -19,8 +21,29 @@ class Project(models.Model):
     equipment = models.TextField(null=True, blank=True)
     banner_image = models.FileField(upload_to=banner_image_path, blank=True)
 
+    latitude = models.FloatField(null=True, blank=True, editable=False)
+    longitude = models.FloatField(null=True, blank=True, editable=False)
+
     def __str__(self) -> str:
         return str(self.address)
+
+    def get_coordinates(self) -> tuple[float, float]:
+        try:
+            geolocator = Nominatim(user_agent="erstehaus")
+            location = geolocator.geocode(self.address)
+            if location:
+                return (location.latitude, location.longitude)
+        except GeocoderTimedOut:
+            pass
+        return (52.5200, 13.4049)
+
+    def save(self, *args, **kwargs):
+        if self.address:
+            lat, lon = self.get_coordinates()
+            self.latitude = lat
+            self.longitude = lon
+
+        super().save(*args, **kwargs)
 
 
 def media_file_path(instance, filename) -> str:

@@ -40,7 +40,7 @@
         {% if plans %}
         <div class="gallery-plan">
             {% for plan in plans %}
-                <img class="plan-file" src="{{ plan.file.url }}"
+                <img class="media-file plan-file" src="{{ plan.file.url }}"
             {% endfor %}
         </div>
         {% endif %}
@@ -64,6 +64,7 @@
 <section class="project-map">
     <div class="project-content">
         <h2 class="section-title">Objekt auf der Karte</h2>
+        {% include "../map.html" with api_key=google_api_key %}
     </div>
 </section>
 {% include "../lightbox.html" %}

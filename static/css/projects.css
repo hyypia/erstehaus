@@ -1,10 +1,8 @@
 .projects-page-title {
     position: relative;
     height: 500px;
-    background: linear-gradient(
-          rgba(0, 0, 0, 0.5), 
-          rgba(0, 0, 0, 0.5)
-        ), url('/static/images/paper-plans.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)), url('/static/images/paper-plans.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,7 +57,7 @@
 
 .project-content {
     width: 1200px;
-    margin: 0 auto;
+    margin: 60px auto;
 }
 
 .project-content p {
@@ -87,7 +85,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); 
+    background: rgba(0, 0, 0, 0.5);
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -117,7 +115,7 @@
     text-align: center;
 }
 
-.project-gallery{
+.project-gallery {
     padding-top: 10px;
     background-color: #C4C4C4;
 }
@@ -131,16 +129,32 @@
 
 .gallery img {
     width: 100%;
-    height: 220px;
+    height: 320px;
     object-fit: cover;
     cursor: pointer;
 }
 
 .gallery-plan {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin: 40px auto;
+    text-align: center;
+}
 
+.plan-file {
+    max-width: 300px;
+    height: auto;
+    cursor: pointer;
 }
 
 .project-equipment {
     padding: 10px 0 10px;
     background-color: #C4C4C4;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
 }

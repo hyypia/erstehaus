@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Project, MediaFile, FloorPlan
 from .forms import ProjectForm
+from .models import FloorPlan, MediaFile, Project
 
 
 class MediaFileInline(admin.TabularInline):
@@ -17,6 +17,7 @@ class FloorPlanInline(admin.TabularInline):
 
 
 class ProjectAdmin(admin.ModelAdmin):
+    exclude = ("latitude", "longitude")
     form = ProjectForm
     inlines = [MediaFileInline, FloorPlanInline]
 
