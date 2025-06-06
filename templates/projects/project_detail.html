@@ -12,53 +12,55 @@
     </div>
 </section>
 
-<section class="project-description">
-    <div class="project-content">
-        <h2 class="section-title">Lagebeschreibung</h2>
-        <p>{{ project.description }}</p>
-    </div>
-</section>
+{% if project.description %}
+    <section class="project-description">
+        <div class="project-content">
+            <h2 class="section-title">Lagebeschreibung</h2>
+            <p>{{ project.description }}</p>
+        </div>
+    </section>
+{% endif %}
 
 {% if media_files %}
-<section class="project-gallery">
-    <div class="project-content">
-        <h2 class="section-title">Fotografien der Einrichtung</h2>
-        <div class="gallery">
-            {% for media in media_files %}
-                <img class="media-file" src="{{ media.file.url }}">
-            {% endfor %}
+    <section class="project-gallery">
+        <div class="project-content">
+            <h2 class="section-title">Fotografien der Einrichtung</h2>
+            <div class="gallery">
+                {% for media in media_files %}
+                    <img class="media-file" src="{{ media.file.url }}">
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endif %}
 
 {% if project.details %}
-<section class="project-details">
-    <div class="project-content">
-        <h2 class="section-title">Details zur Immobile</h2>
-        <p>{{ project.details }}</p>
-        {% if plans %}
-        <div class="gallery-plan">
-            {% for plan in plans %}
-                <img class="media-file plan-file" src="{{ plan.file.url }}"
-            {% endfor %}
+    <section class="project-details">
+        <div class="project-content">
+            <h2 class="section-title">Details zur Immobile</h2>
+            <p>{{ project.details }}</p>
+            {% if plans %}
+            <div class="gallery-plan">
+                {% for plan in plans %}
+                    <img class="media-file plan-file" src="{{ plan.file.url }}"
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
-</section>
+    </section>
 {% endif %}
 
-{% if equipment %}
-<section class="project-equipment">
-    <div class="project-content">
-        <h2 class="section-title">Ausstattung</h2>
-        <ul>
-            {% for eq in equipment %}
-            <li>{{ eq }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-</section>
+{% if project.equipment %}
+    <section class="project-equipment">
+        <div class="project-content">
+            <h2 class="section-title">Ausstattung</h2>
+            <ul>
+                {% for eq in equipment %}
+                    <li>{{ eq }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
 {% endif %}
 
 <section class="project-map">
