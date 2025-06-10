@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block news %}
+<section class="news-banner">
+    <div class="news-page-title">
+        <h1>Unsere Nachrichten</h1>
+    </div>
+</section>
+
+<section class="news-section">
+    <div class="news-card-container">
+        {% for post in news %}
+        <a class="post-card" href="{% url 'post_detail' post.slug %}">
+            <div class="post-card-img">
+                {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% else %}
+                <img src="{% static ' images/plug_picture.png' %}" alt="{{ post.title }}">
+                {% endif %}
+            </div>
+            <div class="post-card-content">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.publish_date }}</p>
+                <p>{{ post.body }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endblock news %}

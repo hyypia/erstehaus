@@ -9,7 +9,7 @@ def index(request):
     try:
         projects = Project.objects.all()
     except Project.DoesNotExist:
-        raise Http404("Projects does not exists")
+        raise Http404("Projects not found")
     return render(request, "projects/projects.html", {"projects": projects})
 
 
