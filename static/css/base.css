@@ -1,17 +1,36 @@
+:root {
+    --font-family-base: "Oswald", sans-serif;
+    --font-weight-light: 300;
+    --font-color: #333;
+    --bg-color: #E4E4E4;
+    --overlay-bg: rgba(0, 0, 0, 0.5);
+    --banner-color: #C4C4C4;
+    --title-color: #E4E4E4;
+
+    --font-size-h1: 46px;
+    --font-size-h2: 22px;
+    --font-size-text: 20px;
+
+    --section-max-width: 1200px;
+    --spacing-lg: 60px;
+    --spacing-md: 20px;
+    --spacing-gap: 30px;
+}
+
 body {
-    font-family: "Oswald", sans-serif;
+    font-family: var(--font-family-base);
     font-optical-sizing: auto;
-    font-weight: 300;
+    font-weight: var(--font-weight-light);
     font-style: normal;
     margin: 0;
     padding: 0;
-    background-color: #E4E4E4;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--font-color);
     line-height: 1.6;
 }
 
 h1 h2 {
-    font-weight: 300;
+    font-weight: var(--font-weight-light);
     font-size: inherit;
     font-family: inherit;
 }
