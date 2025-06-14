@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{% static 'css/projects.css' %}">
     </head>
     <body class="main_container">
+        {% block homepage %}{% endblock homepage %}
         {% block projects %}{% endblock projects %}
         {% block project_content %}{% endblock project_content %}
         {% block news %}{% endblock news %}
