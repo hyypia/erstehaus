@@ -2,11 +2,11 @@
 
 {% block project_content %}
 
-<section class="project-banner">
+<section class="page-banner">
     {% if project.banner_image %}
-            <img class="banner-img" src="{{ project.banner_image.url }}">
+            <img class="page-banner-img" src="{{ project.banner_image.url }}">
     {% endif %}
-    <div class="project-page-title">
+    <div class="page-title">
         <h1>{{ project.title }}</h1>
         <p>{{ project.address }}</p>
     </div>

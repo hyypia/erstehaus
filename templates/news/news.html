@@ -2,27 +2,28 @@
 {% load static %}
 
 {% block news %}
-<section class="news-banner">
-    <div class="news-page-title">
+<section class="page-banner">
+    <img class="page-banner-img" src="{{ project.banner_image.url }}">
+    <div class="page-title">
         <h1>Unsere Nachrichten</h1>
     </div>
 </section>
 
-<section class="news-section">
-    <div class="news-card-container">
+<section class="page-content">
+    <div class="card-container">
         {% for post in news %}
-        <a class="post-card" href="{% url 'post_detail' post.slug %}">
-            <div class="post-card-img">
+        <a class="card" href="{% url 'post_detail' post.slug %}">
+            <div class="card-img">
                 {% if post.image %}
                 <img src="{{ post.image.url }}" alt="{{ post.title }}">
                 {% else %}
-                <img src="{% static ' images/plug_picture.png' %}" alt="{{ post.title }}">
+                <img src="{% static 'images/plug_picture.png' %}" alt="{{ post.title }}">
                 {% endif %}
             </div>
-            <div class="post-card-content">
+            <div class="card-content">
                 <h2>{{ post.title }}</h2>
                 <p>{{ post.publish_date }}</p>
-                <p>{{ post.body }}</p>
+                <p>{{ post.body|slice:":255" }}...</p>
             </div>
         </a>
         {% endfor %}

@@ -2,24 +2,25 @@
 {% load static %}
 
 {% block projects %}
-    <section class="projects-banner">
-        <div class="projects-page-title">
+    <section class="page-banner">
+        <img class="page-banner-img" src="{% static "images/paper-plans.jpg" %}">
+        <div class="page-title">
             <h1>Unsere Projekte</h1>
         </div>
     </section>
     
-    <section class="projects-section">
-        <div class="projects-card-container">
+    <section class="page-content">
+        <div class="card-container">
             {% for project in projects %}
-                <a class="project-card" href="{% url 'project_detail' project.pk %}">
-                    <div class="project-card-img">
+                <a class="card" href="{% url 'project_detail' project.pk %}">
+                    <div class="card-img">
                         {% if project.banner_image %}
                             <img src="{{ project.banner_image.url }}" alt="{{ project.title }}">            
                         {% else %}
                             <img src="{% static "images/plug_picture.png" %}" alt="{{ project.title }}">            
                         {% endif %}
                     </div>
-                    <div class="project-card-content">
+                    <div class="card-content">
                         <h2>{{ project.title }}</h2>
                         <p><strong>Adresse:</strong> {{ project.address }}</p>
                         <p><strong>Wohnfläsche:</strong> {{ project.square }} m²</p>

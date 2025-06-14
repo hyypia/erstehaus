@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 
 {% block post_content %}
-<section class="post-banner">
+<section class="page-banner">
     {% if post.image %}
-    <img class="banner-img" src="{{ post.image.url }}" style="width: 300px; height: 300px">
+    <img class="page-banner-img" src="{{ post.image.url }}" >
     {% endif %}
-    <div class="post-page-title">
+    <div class="page-title">
         <h1>{{ post.title }}</h1>
     </div>
 </section>
-<section class="post_content">
+
+<section class="page-content">
     <div>
         <p>{{ post.body }}</<p>>
         <p>{{ post.author }}</p>
