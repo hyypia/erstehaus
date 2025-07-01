@@ -1,0 +1,133 @@
+:root {
+    --font-family-base: "Oswald", sans-serif;
+    --font-family-paragraph: "Roboto", sans-serif;
+    --font-weight-light: 300;
+    --font-color: #333;
+    --bg-color: #E4E4E4;
+    --overlay-bg: rgba(0, 0, 0, 0.5);
+    --banner-color: #C4C4C4;
+    --title-color: #E4E4E4;
+
+    --font-size-h1: 46px;
+    --font-size-h1-mobile: 40px;
+    --font-size-h2: 32px;
+    --font-size-h2-mobile: 28px;
+    --font-size-h3: 24px;
+    --font-size-text: 20px;
+    --font-size-text-secondary: 18px;
+
+    --section-max-width: 1200px;
+    --spacing-lg: 60px;
+    --spacing-md: 20px;
+    --spacing-gap: 30px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-light);
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    line-height: 1.6;
+}
+
+h1 h2 h3 {
+    font-size: inherit;
+    font-family: inherit;
+}
+
+h3 {
+    font-size: var(--font-size-h3)
+}
+
+p {
+    font-family: var(--font-family-paragraph);
+    font-weight: var(--font-weight-light);
+    font-size: var(--font-size-text);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.page-banner {
+    position: relative;
+    height: 800px;
+    overflow: hidden;
+}
+
+.page-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.page-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-bg);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 var(--spacing-md);
+}
+
+.page-title h1 {
+    margin: 0 auto;
+    color: var(--title-color);
+    text-transform: uppercase;
+    font-size: var(--font-size-h1);
+    letter-spacing: 0px;
+}
+
+.page-title p {
+    font-size: var(--font-size-text);
+    margin: 0;
+    color: var(--title-color);
+}
+
+.section-content-container {
+    max-width: var(--section-max-width);
+    margin: 0 auto;
+    padding: var(--spacing-lg) 0;
+}
+
+.section-title {
+    margin: 0 auto;
+    font-size: var(--font-size-h2);
+    text-transform: uppercase;
+    text-align: center;
+}

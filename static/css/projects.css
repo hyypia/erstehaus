@@ -5,13 +5,40 @@
 
 .project-content p,
 .project-content li {
+    font-family: var(--font-family-paragraph);
     font-size: var(--font-size-text);
 }
 
-.section-title {
-    font-size: 36px;
-    text-transform: uppercase;
-    text-align: center;
+.expose {
+    display: flex;
+    max-width: 150px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    justify-content: center;
+    font-size: var(--font-size-text);
+    font-style: italic;
+    background-color: var(--banner-color);
+    color: var(--font-color);
+    border-radius: 10px;
+    gap: 15px;
+}
+
+.expose:hover {
+    color: var(--banner-color);
+    background-color: var(--font-color);
+    transition: 0.2s;
+}
+
+.expose h3 {
+    margin: 0;
+}
+
+.expose i {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .project-gallery {
@@ -21,6 +48,7 @@
 
 .gallery {
     display: grid;
+    margin-top: var(--spacing-gap);
     padding-bottom: var(--spacing-lg);
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing-gap);
@@ -31,6 +59,11 @@
     height: 320px;
     object-fit: cover;
     cursor: pointer;
+}
+
+video {
+    margin-top: var(--spacing-gap);
+    width: 100%;
 }
 
 .gallery-plan {
@@ -51,6 +84,10 @@
 .project-equipment {
     padding: 10px 0 10px;
     background-color: var(--banner-color);
+}
+
+.map-container {
+    margin-top: var(--spacing-gap);
 }
 
 #map {

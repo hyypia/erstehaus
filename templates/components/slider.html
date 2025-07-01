@@ -1,0 +1,11 @@
+{% load static %}
+
+<div class="slider">
+    <div class="imgs">
+        {% for img in images %}
+        <div class="img" style="background-image: url('{{ img.file.url }}');{% if forloop.first %} left: 0;{% endif %}">
+        </div>
+        {% endfor %}
+    </div>
+    <div class="dots"></div>
+</div>

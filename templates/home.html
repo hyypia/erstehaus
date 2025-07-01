@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block homepage %}
 <section class="page-banner">
-    <img class="page-banner-img" src="{{ project.banner_image.url }}">
+    {% include "components/slider.html" with images=main_title_slides %}
     <div class="page-title">
         <p>Willkommen bei</p> 
         <h1>Erste Haus GmbH</h1>
@@ -10,41 +11,224 @@
     </div>
 </section>
 
-<section class="page-content">
-    <section class="about">
-        <div class="carousel">
-
-        </div>
+<section id="about" class="about">
+    <div class="section-content-container">
+        {% include "components/slider.html" with images=about_us_slides %}
         <div class="about-content">
-            <h2>Erste Haus GmbH</h2>
-            <p>
-                Wir freuen uns, Ihnen unser dynamisches Bauunternehmen vorzustellen. 
-                Als ErsteHaus GmbH haben wir uns auf den Bausektor spezialisiert 
-                und sind seit 2017 in der Entwicklung und Vermarktung von energieeffizienten 
-                Doppelhaushälften und großzügigen Einfamilienhäusern tätig.
-            </p>
+            <h2 class="section-title">Erste Haus GmbH</h2>
+            {% if page_content.company_description %}
+                <p>{{ page_content.company_description }}</p>
+            {% else %}
+                <p>
+                    Wir freuen uns, Ihnen unser dynamisches Bauunternehmen vorzustellen. 
+                    Als ErsteHaus GmbH haben wir uns auf den Bausektor spezialisiert 
+                    und sind seit 2017 in der Entwicklung und Vermarktung von energieeffizienten 
+                    Doppelhaushälften und großzügigen Einfamilienhäusern tätig.
+                </p>
+            {% endif %}
+
             <h3>Unsere Stärken</h3>
-            <p>
-                Energieeffizientes Bauen: Wir legen Wert auf Nachhaltigkeit. 
-                Deshalb setzen wir auf modernste Technologien und Baustoffe, 
-                um Häuser zu schaffen, die nicht nur ästhetisch ansprechend sind, 
-                sondern auch höchsten Energiestandards entsprechen. Vielfältige 
-                Wohnlösungen: Unsere Projekte umfassen großzügige Einfamilienhäuser 
-                und Doppelhaushälften, um den individuellen Bedürfnissen unserer 
-                Kunden gerecht zu werden.
-            </p>
+            {% if page_content.about_us %}
+                <p>{{ page_content.about_us }}</p>
+            {% else %}
+                <p>
+                    Energieeffizientes Bauen: Wir legen Wert auf Nachhaltigkeit. 
+                    Deshalb setzen wir auf modernste Technologien und Baustoffe, 
+                    um Häuser zu schaffen, die nicht nur ästhetisch ansprechend sind, 
+                    sondern auch höchsten Energiestandards entsprechen. Vielfältige 
+                    Wohnlösungen: Unsere Projekte umfassen großzügige Einfamilienhäuser 
+                    und Doppelhaushälften, um den individuellen Bedürfnissen unserer 
+                    Kunden gerecht zu werden.
+                </p>
+            {% endif %}
         </div>
-    </section>
-    <section class="projects">
-    </section>
-    <section class="advanteges">
-    </section>
-    <section class="news">
-    </section>
-    <section class="contacts">
-    </section>
-    <section class="form">
-    </section>
+    </div>
+</section>
+
+{% if projects %}
+<section class="projects">
+    <div class="section-content-container">
+        <h2 class="section-title">Aktuelle Projekte</h2>
+        <div class="card-container">
+            {% for project in projects %}
+                <a class="card" href="{% url 'project_detail' project.pk %}">
+                    <div class="card-img">
+                        {% if project.banner_image %}
+                            <img src="{{ project.banner_image.url }}" alt="{{ project.title }}">            
+                        {% else %}
+                            <img src="{% static "images/plug_picture.png" %}" alt="{{ project.title }}">            
+                        {% endif %}
+                    </div>
+                    <div class="card-content">
+                        <h3>{{ project.title }}</h3>
+                        <p><strong>Adresse:</strong> {{ project.address }}</p>
+                        <p><strong>Wohnfläsche:</strong> {{ project.square }} m²</p>
+                        <p><strong>Grundstücksfläsche:</strong> {{ project.land_area }} m²</p>
+                        <p><strong>Zimmer:</strong> {{ project.rooms }}</p>
+                        <p><strong>Preis:</strong> {{ project.price }} €</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>  
+    </div>
+</section>
+{% endif %}
+
+<section class="advantages">
+    <div class="section-content-container">
+        <h2 class="section-title">Unsere Vorteile</h2>
+ 
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="icon-container">
+                    <img src="{% static "images/icons/map.svg" %}" class="icon">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Attraktive Lage</h3>
+                    <p class="benefit-description">
+                        Unsere Häuser befinden sich in den schönsten und begehrtesten 
+                        Wohngegenden von Berlin/Brandenburg. Die gute Infrastruktur 
+                        ist ein integraler Bestandteil unserer Objekte. Einkaufsmöglichkeiten, 
+                        Schulen, Kindergärten und öffentliche Verkehrsmittel sind in 
+                        unmittelbarer Nähe vorhanden.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="icon-container">
+                    <img src="{% static "images/icons/house.svg" %}" class="icon">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Moderne Technologien und hochwertige Materialien</h3>
+                    <p class="benefit-description">
+                        Für Ihr Zuhause setzen wir auf fortschrittliche Technologien 
+                        und erstklassige Materialien, um Langlebigkeit und Energieeffizienz 
+                        zu gewährleisten.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="icon-container">
+                    <img src="{% static "images/icons/house2.svg" %}" class="icon">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Vielfältige Wohnlösungen</h3>
+                    <p class="benefit-description">
+                        Unsere Projekte umfassen geräumige freistehende Häuser und 
+                        Doppelhäuser, die den individuellen Bedürfnissen unserer Kunden entsprechen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="icon-container">
+                    <img src="{% static "images/icons/euro.svg" %}" class="icon">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Angemessene Preise</h3>
+                    <p class="benefit-description">
+                        Wir bieten unsere Häuser zu fairen und wettbewerbsfähigen Preisen an, 
+                        um den Kauf von Wohnraum für alle realistisch zu machen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="icon-container">
+                    <img src="{% static "images/icons/shield.svg" %}" class="icon">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Sicherheit und Komfort</h3>
+                    <p class="benefit-description">
+                        Ihr Komfort und Ihre Sicherheit haben für uns höchste Priorität. 
+                        Unsere Häuser sind mit modernen Sicherheitssystemen und Annehmlichkeiten 
+                        ausgestattet, die ein komfortables Wohnen ermöglichen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="icon-container">
+                    <img src="{% static "images/icons/certificate.svg" %}" class="icon">
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Qualität und Zuverlässigkeit</h3>
+                    <p class="benefit-description">
+                        Unsere Häuser werden nach den höchsten Qualitäts- und 
+                        Zuverlässigkeitsstandards gebaut, damit Sie sich langfristig 
+                        über den Wert Ihrer Investition sicher sein können.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if news %}
+<section class="news">
+    <div class="section-content-container">
+        <h2 class="section-title">Nachrichten</h2>
+        <div class="news-grid">
+            {% for post in news %}
+            <a class="news-card" href="{% url 'post_detail' post.slug %}">
+                <div class="news-card-img">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                    {% else %}
+                    <img src="{% static 'images/plug_picture.png' %}" alt="{{ post.title }}">
+                    {% endif %}
+                </div>
+                <div class="news-card-content">
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.body|slice:":255" }}...</p>
+                    <div class="news-card-btn">Mehr Lesen</div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section id="contacts" class="contacts">
+    <div class="section-content-container">
+        <h2 class="section-title">Kontaktangaben</h2>
+        <div class="contacts-container">
+            <div class="contacts-content">
+                <h3>Unsere Adresse</h3>
+                {% if page_content.address %}
+                    <p>{{ page_content.address }}</p>
+                {% else %}
+                <p>Erstehaus GmbH, Rembrandstr. 67,<br>15827 Blankenfelde-Mahlow</p>
+                {% endif %}
+                <h3>Rufen Sie uns an</h3>
+                {% if page_content.phone %}
+                    <p>{{ page_content.phone }}</p>
+                {% else %}
+                    <p>+49 176 22286414</p>
+                {% endif %}
+                <h3>Email Adresse</h3>
+                {% if page_content.email %}
+                    <p>{{ page_content.email }}</p>
+                {% else %}
+                    <p>info@erstehaus.de</p>
+                {% endif %}
+            </div>
+            <div class="contacts-map">
+                {% include "components/map.html" with api_key=google_api_key latitude=latitude longitude=longitude %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="form" class="form">
+    <div class="section-content-container">
+        <h2 class="section-title">Kontaktieren Sie uns</h2>
+        <p>Wir freuen uns auf Ihre Nachricht</p>
+        {% include "components/contact.html" with form=form %}
+    </div>
 </section>
 
 {% endblock homepage %}

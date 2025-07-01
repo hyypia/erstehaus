@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block project_content %}
 
 <section class="page-banner">
@@ -17,6 +17,12 @@
         <div class="project-content">
             <h2 class="section-title">Lagebeschreibung</h2>
             <p>{{ project.description }}</p>
+            {% if project.expose %}
+                <a class="expose" href="{{ project.expose.url }}" download>
+                    <h3>Exposé</h3>
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+            {% endif %}
         </div>
     </section>
 {% endif %}
@@ -38,6 +44,13 @@
     <section class="project-details">
         <div class="project-content">
             <h2 class="section-title">Details zur Immobile</h2>
+            {% if videos %}
+                {% for video in videos %}
+                    <video autoplay controls muted>
+                        <source src="{{ video.video.url }}" />
+                    </video>
+                {% endfor %}
+            {% endif %}
             <p>{{ project.details }}</p>
             {% if plans %}
             <div class="gallery-plan">
@@ -66,8 +79,11 @@
 <section class="project-map">
     <div class="project-content">
         <h2 class="section-title">Objekt auf der Karte</h2>
-        {% include "../components/map.html" with api_key=google_api_key %}
+        <div class="map-container">
+        {% include "../components/map.html" with api_key=google_api_key latitude=latitude longitude=longitude %}
+        </div>
     </div>
 </section>
 {% include "../components/lightbox.html" %}
+<script src="{% static 'js/lightbox.js' %}" defer></script>
 {% endblock project_content %}

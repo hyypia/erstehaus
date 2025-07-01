@@ -9,7 +9,7 @@
         </div>
     </section>
     
-    <section class="page-content">
+    <section class="section-content-container">
         <div class="card-container">
             {% for project in projects %}
                 <a class="card" href="{% url 'project_detail' project.pk %}">
@@ -21,7 +21,7 @@
                         {% endif %}
                     </div>
                     <div class="card-content">
-                        <h2>{{ project.title }}</h2>
+                        <h3>{{ project.title }}</h3>
                         <p><strong>Adresse:</strong> {{ project.address }}</p>
                         <p><strong>Wohnfläsche:</strong> {{ project.square }} m²</p>
                         <p><strong>Grundstücksfläsche:</strong> {{ project.land_area }} m²</p>

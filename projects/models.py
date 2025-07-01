@@ -4,11 +4,17 @@ from geopy.geocoders import Nominatim
 
 
 def banner_image_path(instance, filename) -> str:
-    return f"project_{instance.id}/media/banner_{filename}"
+    return f"project_{instance.id}/media/{filename}"
 
 
 class Project(models.Model):
+    STATUS_CHOICES = {
+        "F": "Future",
+        "A": "Actual",
+        "P": "Past",
+    }
     title = models.CharField(max_length=200)
+    banner_image = models.FileField(upload_to=banner_image_path, blank=True)
     address = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     rooms = models.IntegerField(null=True, blank=True)
@@ -19,13 +25,17 @@ class Project(models.Model):
     description = models.TextField(null=True, blank=True)
     details = models.TextField(null=True, blank=True)
     equipment = models.TextField(null=True, blank=True)
-    banner_image = models.FileField(upload_to=banner_image_path, blank=True)
+    expose = models.FileField(upload_to="expose/", blank=True)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default="F")
 
     latitude = models.FloatField(null=True, blank=True, editable=False)
     longitude = models.FloatField(null=True, blank=True, editable=False)
 
     def __str__(self) -> str:
         return str(self.address)
+
+    def get_self_id(self):
+        return self.pk
 
     def get_coordinates(self) -> tuple[float, float]:
         try:
@@ -55,6 +65,13 @@ class MediaFile(models.Model):
         Project, related_name="project_media", on_delete=models.CASCADE
     )
     file = models.FileField(upload_to=media_file_path, blank=True)
+
+
+class VideoFile(models.Model):
+    project = models.ForeignKey(
+        Project, related_name="project_video", on_delete=models.CASCADE
+    )
+    video = models.FileField(upload_to=media_file_path, blank=True)
 
 
 def plan_file_path(instance, filename) -> str:
