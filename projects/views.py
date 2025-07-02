@@ -5,14 +5,14 @@ from .models import Project
 
 
 def index(request):
-    if request.path == "/aktuelle_projekte/":
+    status = None
+    path = request.path
+    if path.endswith("/aktuelle/"):
         status = "A"
-    elif request.path == "/abgeschlossene_projekte/":
+    if path.endswith("/abgeschlossene/"):
         status = "P"
-    elif request.path == "/zukuenftige_projekte/":
+    if path.endswith("/zukuenftige/"):
         status = "F"
-    else:
-        status = None
 
     if status:
         projects = get_list_or_404(Project, status=status)
