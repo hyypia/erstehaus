@@ -190,7 +190,7 @@
                 </div>
                 <div class="news-card-content">
                     <h3>{{ post.title }}</h3>
-                    <p>{{ post.body|slice:":255" }}...</p>
+                    <p>{{ post.body|truncatechars:255 }}</p>
                     <div class="news-card-btn">Mehr Lesen</div>
                 </div>
             </a>

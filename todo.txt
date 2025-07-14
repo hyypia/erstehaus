@@ -1,7 +1,7 @@
-1. Responsive Design;
-2. Datenschutz;
-3. Impressun;
-4. Pop-up-Menu with addresses;
-5. Cookies;
-6. Google Analytics.
-
+Responsive Design; X
+Datenschutz; X
+Impressun; X
+Pop-up-Menu with addresses;
+Cookies; X
+Google Analytics.
+Logging

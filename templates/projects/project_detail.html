@@ -14,7 +14,7 @@
 
 {% if project.description %}
     <section class="project-description">
-        <div class="project-content">
+        <div class="section-content-container">
             <h2 class="section-title">Lagebeschreibung</h2>
             <p>{{ project.description }}</p>
             {% if project.expose %}
@@ -29,7 +29,7 @@
 
 {% if media_files %}
     <section class="project-gallery">
-        <div class="project-content">
+        <div class="section-content-container">
             <h2 class="section-title">Fotografien der Einrichtung</h2>
             <div class="gallery">
                 {% for media in media_files %}
@@ -42,7 +42,7 @@
 
 {% if project.details %}
     <section class="project-details">
-        <div class="project-content">
+        <div class="section-content-container">
             <h2 class="section-title">Details zur Immobile</h2>
             {% if videos %}
                 {% for video in videos %}
@@ -65,7 +65,7 @@
 
 {% if project.equipment %}
     <section class="project-equipment">
-        <div class="project-content">
+        <div class="section-content-container">
             <h2 class="section-title">Ausstattung</h2>
             <ul>
                 {% for eq in equipment %}
@@ -77,7 +77,7 @@
 {% endif %}
 
 <section class="project-map">
-    <div class="project-content">
+    <div class="section-content-container">
         <h2 class="section-title">Objekt auf der Karte</h2>
         <div class="map-container">
         {% include "../components/map.html" with api_key=google_api_key latitude=latitude longitude=longitude %}

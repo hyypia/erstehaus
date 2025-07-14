@@ -1,14 +1,3 @@
-.project-content {
-    width: var(--section-max-width);
-    margin: var(--spacing-lg) auto;
-}
-
-.project-content p,
-.project-content li {
-    font-family: var(--font-family-paragraph);
-    font-size: var(--font-size-text);
-}
-
 .expose {
     display: flex;
     max-width: 150px;

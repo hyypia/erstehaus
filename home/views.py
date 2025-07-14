@@ -81,3 +81,11 @@ def home(request):
         "form": form,
     }
     return render(request, "home.html", context=context)
+
+
+def impresum(request):
+    return render(request, "impressum.html")
+
+
+def datenschutz(request):
+    return render(request, "datenschutz.html")

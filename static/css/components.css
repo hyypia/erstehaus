@@ -161,6 +161,7 @@
     padding: 10px 0;
 }
 
+
 .nav-item:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
@@ -171,14 +172,47 @@
     display: block;
     padding: 12px 20px;
     color: var(--font-color);
+    text-transform: capitalize;
     text-decoration: none;
     font-size: var(--font-size-text);
     transition: background-color 0.3s ease;
 }
 
+.dropdown-item .link {
+    font-size: var(--font-size-text-secondary);
+}
+
 .dropdown-item:hover {
     background-color: var(--banner-color);
     color: var(--title-color);
+}
+
+.dropdown-submenu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: var(--bg-color);
+    min-width: 200px;
+    padding: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px var(--overlay-bg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.dropdown-item.has-submenu {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-item.has-submenu:hover .dropdown-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .mobile-toggle {
@@ -484,6 +518,10 @@ textarea.form-control {
     color: #666;
 }
 
+.form-note a {
+    text-decoration: underline;
+}
+
 .required-note {
     font-family: var(--font-family-paragraph);
     font-size: 0.85rem;
@@ -529,4 +567,117 @@ textarea.form-control {
     background: #fff3cd;
     border: 1px solid #ffeaa7;
     color: #856404;
+}
+
+/* Cookies Popup */
+
+#cc-main {
+    /** Change font **/
+    --cc-font-family: Roboto;
+
+    --cc-bg: var(--bg-color);
+    /** Change button primary color to black **/
+    --cc-btn-primary-bg: var(--font-color);
+    --cc-btn-primary-border-color: var(--font-color);
+    --cc-btn-primary-hover-bg: #444444;
+    --cc-btn-primary-hover-border-color: #444444;
+
+    --cc-btn-secondary-bg: var(--banner-color);
+    --cc-btn-secondary-border-color: var(--banner-color);
+    --cc-btn-secondary-hover-bg: #d1d1d1;
+
+    /** Also make toggles the same color as the button **/
+    --cc-toggle-on-bg: var(--cc-btn-primary-bg);
+
+    /** Make the buttons a bit rounder **/
+    --cc-btn-border-radius: 10px;
+
+    --cc-separator-border-color: var(--banner-color);
+}
+
+.cookies-wrapper {
+    display: none;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background: var(--bg-color);
+    padding: 15px 25px 22px;
+    transition: right 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.cookies-wrapper.show {
+    display: block;
+    margin: 0 auto;
+}
+
+.cookies-wrapper header {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+header i {
+    color: var(--font-color);
+    font-size: 32px;
+}
+
+header h2 {
+    margin: 0;
+    margin-top: 5px;
+    color: var(--font-color);
+    font-weight: 500;
+}
+
+.cookies-wrapper .data {
+    margin-top: 16px;
+}
+
+.cookies-wrapper .data p {
+    color: var(--font-color);
+    font-size: 16px;
+}
+
+.data p a {
+    color: var(--font-color);
+    text-decoration: underline;
+}
+
+.data p a:hover {
+    color: #616161;
+}
+
+.cookies-wrapper .buttons {
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.buttons .button {
+    border: none;
+    color: var(--title-color);
+    padding: 8px 0;
+    border-radius: 4px;
+    background: var(--font-color);
+    cursor: pointer;
+    width: calc(100% / 2 - 10px);
+    transition: all 0.2s ease;
+}
+
+.buttons #acceptBtn:hover {
+    background-color: #616161;
+    border: 2px solid var(--font-color);
+}
+
+#declineBtn {
+    border: 2px solid var(--font-color);
+    background-color: var(--bg-color);
+    color: var(--font-color);
+}
+
+#declineBtn:hover {
+    background-color: var(--banner-color);
 }

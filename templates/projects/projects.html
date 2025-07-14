@@ -23,11 +23,18 @@
                     <div class="card-content">
                         <h3>{{ project.title }}</h3>
                         <p><strong>Adresse:</strong> {{ project.address }}</p>
-                        <p><strong>Wohnfläsche:</strong> {{ project.square }} m²</p>
-                        <p><strong>Grundstücksfläsche:</strong> {{ project.land_area }} m²</p>
-                        <p><strong>Zimmer:</strong> {{ project.rooms }}</p>
-                        <p><strong>Preis:</strong> {{ project.price }} €</p>
-                    </div>
+                        {% if project.square %}
+                            <p><strong>Wohnfläsche:</strong> {{ project.square }} m²</p>
+                        {% endif %}
+                        {% if project.land_area %}
+                            <p><strong>Grundstücksfläsche:</strong> {{ project.land_area }} m²</p>
+                        {% endif %}
+                        {% if project.rooms %}
+                            <p><strong>Zimmer:</strong> {{ project.rooms }}</p>
+                        {% endif %}
+                        {% if project.price %}
+                            <p><strong>Preis:</strong> {{ project.price }} €</p>
+                        {% endif %}                    </div>
                 </a>
             {% endfor %}
         </div>
