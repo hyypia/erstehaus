@@ -1,7 +1,7 @@
 Responsive Design; X
 Datenschutz; X
 Impressun; X
-Pop-up-Menu with addresses;
+Pop-up-Menu with addresses; X
 Cookies; X
 Google Analytics.
 Logging

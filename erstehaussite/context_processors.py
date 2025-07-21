@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 from home.models import HomePageContent
@@ -18,4 +19,5 @@ def global_context(request):
         "actuals": actuals,
         "pasts": pasts,
         "futures": futures,
+        "google_analytics_id": settings.GOOGLE_ANALYTICS_ID,
     }

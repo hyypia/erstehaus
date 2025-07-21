@@ -187,6 +187,15 @@
     color: var(--title-color);
 }
 
+.dropdown-item.dropdown::after {
+    content: '\f105';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    float: right;
+    font-size: var(--font-size-text);
+    transition: transform 0.3s ease;
+}
+
 .dropdown-submenu {
     position: absolute;
     top: 0;
@@ -203,13 +212,13 @@
     z-index: 1000;
 }
 
-.dropdown-item.has-submenu {
+.dropdown-item.submenu {
     position: relative;
     margin: 0;
     padding: 0;
 }
 
-.dropdown-item.has-submenu:hover .dropdown-submenu {
+.dropdown-item.submenu:hover .dropdown-submenu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);

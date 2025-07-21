@@ -14,6 +14,7 @@ load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_KEY") or "django secret key not found"
 GOOGLE_KEY = os.getenv("GOOGLE_API_KEY") or "google key not found"
+GOOGLE_ANALYTICS_ID = os.getenv("GOOGLE_ANALYTICS_ID") or "google id not found"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

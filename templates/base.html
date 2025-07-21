@@ -17,6 +17,15 @@
         <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
         <link rel="stylesheet" href="{% static 'css/projects.css' %}">
         <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        <!-- Google tag (gtag.js) -->
+        <script async data-src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}" data-category="analytics"></script>
+        <script data-category="analytics">
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '{{ google_analytics_id }}');
+        </script>
     </head>
     <body class="main_container">
         <div class="wrapper">
@@ -67,8 +76,8 @@
                         <li class="nav-item">
                             <a href="/projekte" class="nav-link dropdown">Projekte</a>
                             <div class="dropdown-menu">
-                                <div class="dropdown-item has-submenu">
-                                <a href="/projekte/aktuelle" class="dropdown-item">Aktuelle Projekte</a>
+                                <div class="dropdown-item submenu">
+                                <a href="/projekte/aktuelle" class="dropdown-item dropdown">Aktuelle Projekte</a>
                                 {% if actuals %}
                                 <div class="dropdown-submenu">
                                     {% for project in actuals %}
@@ -77,8 +86,26 @@
                                 </div>
                                 {% endif %}
                                 </div>
-                                <a href="/projekte/abgeschlossene" class="dropdown-item">Abgeschlossene Projekte</a>
-                                <a href="/projekte/zukuenftige" class="dropdown-item">Zukünftige Projekte</a>
+                                <div class="dropdown-item submenu">
+                                <a href="/projekte/abgeschlossene" class="dropdown-item dropdown">Abgeschlossene Projekte</a>
+                                {% if pasts  %}
+                                <div class="dropdown-submenu">
+                                    {% for project in pasts %}
+                                    <a href="{% url 'project_detail' project.pk %}" class="dropdown-item link">{{ project.address|from_char_cut:"," }}</a>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                </div>
+                                <div class="dropdown-item submenu">
+                                <a href="/projekte/zukuenftige" class="dropdown-item dropdown">Zukünftige Projekte</a>
+                                {% if futures  %}
+                                <div class="dropdown-submenu">
+                                    {% for project in futures %}
+                                    <a href="{% url 'project_detail' project.pk %}" class="dropdown-item link">{{ project.address|from_char_cut:"," }}</a>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                </div>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -99,7 +126,6 @@
         {% block post_content %}{% endblock post_content %}
         {% block impressum %}{% endblock impressum %}
         {% block datenschutz %}{% endblock datenschutz %}
-        {% include "./components/cookies_popup.html" %}
 
         <footer class="main-header main-footer">
             <div class="header-container footer-container">
@@ -158,6 +184,7 @@
         <script type="module" src="{% static 'js/cookieconsent-config.js' %}"></script>
         <script src="{% static 'js/menu.js' %}" defer></script>
         <script src="{% static 'js/slider.js' %}" defer></script>
-        <script src="{% static 'js/map.js' %}" defer></script>
+        <script src="{% static 'js/map.js' %}" data-category="maps" defer></script>
+
     </body>
 </html>
