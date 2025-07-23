@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.shortcuts import get_list_or_404, get_object_or_404
 
@@ -20,4 +22,5 @@ def global_context(request):
         "pasts": pasts,
         "futures": futures,
         "google_analytics_id": settings.GOOGLE_ANALYTICS_ID,
+        "date_now": datetime.now(),
     }

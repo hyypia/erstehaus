@@ -12,24 +12,31 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_KEY") or "django secret key not found"
+SECRET_KEY = (
+    os.getenv("DJANGO_KEY")
+    or "django-insecure-ofo3tw2_(o0gy8t2qg17zy(0)07%08aj9s2ttg^&qxpx_ca$pz"
+)
 GOOGLE_KEY = os.getenv("GOOGLE_API_KEY") or "google key not found"
 GOOGLE_ANALYTICS_ID = os.getenv("GOOGLE_ANALYTICS_ID") or "google id not found"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DJANGO_DEBUG") != "False"
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "erstehaus.de"]
 
+# Email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASS")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST", "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASS", "")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-ADMINS = [("idachser", "techarea.x08@gmail.com")]
+ADMINS = [(os.getenv("ADMIN_NAME", ""), os.getenv("ADMIN_EMAIL", ""))]
 
 # Application definition
 
@@ -46,6 +53,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -87,6 +96,15 @@ DATABASES = {
 }
 
 
+# Static file serving.
+# https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -121,6 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",

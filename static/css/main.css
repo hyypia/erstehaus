@@ -66,6 +66,10 @@ a {
     text-decoration: none;
 }
 
+li p {
+    margin: 0;
+}
+
 .wrapper {
     min-height: 100%;
     display: grid;
